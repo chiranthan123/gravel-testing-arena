@@ -1,0 +1,24 @@
+{
+  "name": "GRAVEL — Educational Operating System",
+  "short_name": "Gravel",
+  "description": "Offline-First Progressive Web Application with Feature-Indexed Micro-Module Architecture for NIOS, Colleges, and Coaching Institutes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090D16",
+  "theme_color": "#2563EB",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

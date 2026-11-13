@@ -1,0 +1,359 @@
+/* GRAVEL PWA — Core Stylesheet & Theme System [F-UI-001] [F-UI-002] */
+
+:root {
+  /* Default fallbacks (Gravel Slate Dark) */
+  --bg-canvas: #090D16;
+  --bg-surface-primary: #111827;
+  --bg-surface-glass: rgba(17, 24, 39, 0.85);
+  --bg-surface-muted: #1E293B;
+  --bg-surface-hover: #1E3A5F;
+  --bg-floating-bar: #38BDF8;
+  --bg-floating-text: #090D16;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --accent-primary: #38BDF8;
+  --accent-subtle: #0C4A6E;
+  --accent-secondary: #818CF8;
+  --status-present: #4ADE80;
+  --status-present-bg: #052E16;
+  --status-absent: #F87171;
+  --status-absent-bg: #450A0A;
+  --status-late: #FBBF24;
+  --status-late-bg: #451A03;
+  --tag-public-exam: #60A5FA;
+  --tag-public-exam-bg: #172554;
+  --tag-tma-only: #C084FC;
+  --tag-tma-only-bg: #3B0764;
+  --border-hairline: #1E293B;
+  --card-radius: 6px;
+  --border-width: 1px;
+  --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+code, kbd, samp, pre, .font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hairline);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Component Utility Classes */
+.gravel-card {
+  background-color: var(--bg-surface-primary);
+  border: var(--border-width) solid var(--border-hairline);
+  border-radius: var(--card-radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gravel-card-hover:hover {
+  background-color: var(--bg-surface-hover);
+}
+
+.gravel-glass {
+  background-color: var(--bg-surface-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--border-width) solid var(--border-hairline);
+}
+
+.gravel-input {
+  background-color: var(--bg-surface-muted);
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--border-hairline);
+  border-radius: var(--card-radius);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.gravel-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-subtle);
+}
+
+.gravel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--card-radius);
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  user-select: none;
+}
+
+.gravel-btn-primary {
+  background-color: var(--accent-primary);
+  color: #FFFFFF;
+}
+.gravel-btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.gravel-btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--border-hairline);
+}
+.gravel-btn-outline:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--accent-primary);
+}
+
+.gravel-btn-subtle {
+  background-color: var(--accent-subtle);
+  color: var(--accent-primary);
+}
+.gravel-btn-subtle:hover {
+  filter: brightness(0.95);
+}
+
+.gravel-btn-danger {
+  background-color: var(--status-absent-bg);
+  color: var(--status-absent);
+  border: 1px solid var(--status-absent);
+}
+.gravel-btn-danger:hover {
+  background-color: var(--status-absent);
+  color: #FFFFFF;
+}
+
+/* Status Pills */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.status-pill-present {
+  background-color: var(--status-present-bg);
+  color: var(--status-present);
+  border: 1px solid var(--status-present);
+}
+
+.status-pill-absent {
+  background-color: var(--status-absent-bg);
+  color: var(--status-absent);
+  border: 1px solid var(--status-absent);
+}
+
+.status-pill-late {
+  background-color: var(--status-late-bg);
+  color: var(--status-late);
+  border: 1px solid var(--status-late);
+}
+
+/* Tags */
+.tag-public-exam {
+  background-color: var(--tag-public-exam-bg);
+  color: var(--tag-public-exam);
+  border: 1px solid var(--tag-public-exam);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+}
+
+.tag-tma-only {
+  background-color: var(--tag-tma-only-bg);
+  color: var(--tag-tma-only);
+  border: 1px solid var(--tag-tma-only);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+}
+
+/* Floating Bulk Action Bar [F-UI-006] */
+.floating-bulk-bar {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  background-color: var(--bg-floating-bar);
+  color: var(--bg-floating-text);
+  border-radius: var(--card-radius);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Slide-Over Drawer [F-UI-007] */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawer-content {
+  width: 100%;
+  max-width: 580px;
+  height: 100%;
+  background: var(--bg-surface-primary);
+  border-left: var(--border-width) solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  animation: slideLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Layout Zone Grid (Desktop >=1024px vs Mobile) */
+.app-layout-desktop {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background-color: var(--bg-surface-primary);
+  border-right: var(--border-width) solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main-canvas {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-canvas);
+}
+
+/* Mobile Bottom Thumb Bar [F-UI-001] */
+.mobile-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: var(--bg-surface-primary);
+  border-top: var(--border-width) solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 40;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.mobile-thumb-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  height: 100%;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.mobile-thumb-item.active {
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+/* Visual Diff Strikethrough Badge [F-SCH-505] */
+.diff-badge-rescheduled {
+  border-left: 3px solid var(--accent-secondary);
+  background: linear-gradient(90deg, var(--accent-subtle) 0%, transparent 100%);
+}
+
+.diff-strikethrough {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+

@@ -1,0 +1,359 @@
+================================================================================
+GRAVEL PWA — MODULAR UI DESIGN EXAMPLES & LIGHT/DARK THEME SPECIFICATIONS
+================================================================================
+Document Type : UI/UX Visual Design & Theme Token Specification (.txt)
+Linked System : Feature-Index Engine [F-UI-001] (Shell) & [F-UI-002] (Themes)
+Target Roles  : DEV, ADMIN, TEACHER, STUDENT
+Institution   : NIOS Study Centres, Degree Colleges, and Coaching Institutes
+================================================================================
+
+1. OVERVIEW OF THE SWAPPABLE UI ARCHITECTURE
+--------------------------------------------------------------------------------
+In Gravel, the User Interface is not hardcoded to a single aesthetic. Through 
+Feature Index `[F-UI-001]` (Responsive App Shell Controller) and `[F-UI-002]` 
+(Modular Theme Engine), the `DEV` account can hot-swap both the **Structural 
+Layout Density** and the **Color/Typography Theme Tokens** at runtime.
+
+Below are three complete UI Design Directions created for Gravel. Every design 
+supports all Feature Indices (`[F-UI-xxx]` to `[F-NOT-xxx]`) and includes both a 
+**Light Theme** and a **Dark Theme** engineered to meet WCAG AAA ($7:1$) and AA 
+($4.5:1$) contrast standards:
+
+  * DESIGN 1: "GRAVEL SLATE (SWISS BENTO GRID)"
+    High-density, border-driven operational interface built for rapid data 
+    scanning, Admin tables, Dev logs, and multi-axis analytics.
+  * DESIGN 2: "NIOS ACADEMIC EDITORIAL (NEO-PAPER & INK)"
+    Warm, distraction-free, textbook-inspired interface tailored for NIOS Study 
+    Centres, TMA/PCP milestone tracking, and long-session student reading.
+  * DESIGN 3: "KINETIC PULSE (FLOATING DOCK & HIGH-CONTRAST OLED)"
+    Modern, gesture-friendly interface with floating glass action bars, bold 
+    status pills, and true-black OLED support for fast-paced coaching/colleges.
+
+
+================================================================================
+2. UI DESIGN 1: "GRAVEL SLATE (SWISS BENTO GRID)"
+================================================================================
+* Best Suited For : Default Multi-Role Deployment, Admin Account Directory 
+                    (`[F-ACC-201..206]`), Observation Studio (`[F-GRPH-401..408]`), 
+                    and Dev Console (`[F-DEV-001..006]`).
+* Design Language : Crisp $1\text{px}$ exposed hairlines, zero-shadow flat Bento 
+                    containers, tabular monospace numerals for 12-digit NIOS 
+                    Enrolment Numbers and statistical outputs ($\mu, \sigma, AR$), 
+                    and compact $8\text{px}$ spatial grid spacing.
+* Typography      :
+  - Headings & UI : `Inter` or `Plus Jakarta Sans` (SemiBold 600, tracking $-0.02\text{em}$)
+  - Data & IDs    : `JetBrains Mono` (Medium 500, `font-variant-numeric: tabular-nums`)
+
+--------------------------------------------------------------------------------
+2.1 DESIGN 1 — LIGHT THEME: "ALABASTER & GRAPHITE"
+--------------------------------------------------------------------------------
+ Designed for bright classrooms and daytime administrative offices where glare 
+reduction and crisp table borders are critical.
+
+* Surface & Background Tokens:
+  - `--bg-canvas`          : `#F8FAFC` (Cool Alabaster Base)
+  - `--bg-surface-primary` : `#FFFFFF` (Pure White Bento Card / Table Row)
+  - `--bg-surface-muted`   : `#F1F5F9` (Table Header / Filter Bar Fill)
+  - `--bg-surface-hover`   : `#EFF6FF` (Row Hover Highlight)
+  - `--bg-floating-bar`    : `#0F172A` (Inverted High-Contrast Bulk Action Bar)
+
+* Typography & Icon Tokens:
+  - `--text-primary`       : `#0F172A` (Deep Slate Ink — Contrast $16.1:1$)
+  - `--text-secondary`     : `#475569` (Muted Graphite — Contrast $7.2:1$)
+  - `--text-muted`         : `#94A3B8` (Placeholder / Disabled)
+
+* Accent & Semantic Status Tokens:
+  - `--accent-primary`     : `#2563EB` (Royal Cobalt — Primary CTA & Active Tab)
+  - `--accent-subtle`      : `#DBEAFE` (Selected Row Fill & Active Chip Bg)
+  - `--status-present`     : `#16A34A` (Text/Icon) on `#DCFCE7` (Pill Background)
+  - `--status-absent`      : `#DC2626` (Text/Icon) on `#FEE2E2` (Pill Background)
+  - `--status-late`        : `#D97706` (Text/Icon) on `#FEF3C7` (Pill Background)
+  - `--border-hairline`    : `#E2E8F0` ($1\text{px}$ Solid Structural Divider)
+
+--------------------------------------------------------------------------------
+2.2 DESIGN 1 — DARK THEME: "OBSIDIAN & CYAN SLATE"
+--------------------------------------------------------------------------------
+Designed for late-night Dev debugging, low-light Admin auditing, and reduced 
+eye strain during heavy grading sessions.
+
+* Surface & Background Tokens:
+  - `--bg-canvas`          : `#090D16` (Deep Obsidian Void)
+  - `--bg-surface-primary` : `#111827` (Dark Gunmetal Bento Card)
+  - `--bg-surface-muted`   : `#1E293B` (Table Header & Input Field Fill)
+  - `--bg-surface-hover`   : `#1E3A5F` (Subtle Cobalt Row Hover)
+  - `--bg-floating-bar`    : `#38BDF8` (High-Visibility Sky Bar with Dark Text)
+
+* Typography & Icon Tokens:
+  - `--text-primary`       : `#F8FAFC` (Crisp Ice White — Contrast $15.8:1$)
+  - `--text-secondary`     : `#94A3B8` (Cool Silver — Contrast $6.8:1$)
+  - `--text-muted`         : `#64748B` (Dimmed Slate)
+
+* Accent & Semantic Status Tokens:
+  - `--accent-primary`     : `#38BDF8` (Electric Sky Cyan)
+  - `--accent-subtle`      : `#0C4A6E` (Selected Row Fill)
+  - `--status-present`     : `#4ADE80` (Text/Icon) on `#052E16` (Pill Background)
+  - `--status-absent`      : `#F87171` (Text/Icon) on `#450A0A` (Pill Background)
+  - `--status-late`        : `#FBBF24` (Text/Icon) on `#451A03` (Pill Background)
+  - `--border-hairline`    : `#1E293B` ($1\text{px}$ Solid Structural Divider)
+
+--------------------------------------------------------------------------------
+2.3 DESIGN 1 — SCREEN BLUEPRINT (ADMIN DIRECTORY + OBSERVATION SPLIT)
+--------------------------------------------------------------------------------
+Mounts: `[F-UI-001]`, `[F-UI-003]`, `[F-UI-005]`, `[F-UI-006]`, `[F-ACC-203..206]`
+
++------------------------------------------------------------------------------+
+| [G] GRAVEL  | [Cmd+K Search Enrolment No, Name, Subject... [F-UI-003]] | [o] |
+|-------------+----------------------------------------------------------------|
+| ROLE: ADMIN | DIRECTORY > STUDENTS (NIOS AI #270123)   [+Import] [+New User] |
+|             |----------------------------------------------------------------|
+| > Directory | FILTERS [F-ACC-203]: [Stream 1 Blk 1 v] [TMA: Pending v] [AR<75]|
+|   Analytics | SORT BY [F-ACC-204]: [Attendance: Low -> High v]  Showing 142  |
+|   Schedules |----------------------------------------------------------------|
+|   Access    | [x] | ENROLMENT NO | STUDENT NAME  | STREAM | TMA   | AR (%)   |
+|   Broadcast |-----+--------------+---------------+--------+-------+----------|
+|             | [x] | 270123210014 | Aarav Sharma  | S1-B1  | 2/5   | 64.2% !  |
+|             | [x] | 270123210089 | Diya Nair     | S1-B1  | 1/5   | 68.0% !  |
+|             | [ ] | 270123210102 | Kabir Verma   | S3-ODE | 5/5   | 88.5%    |
+|             | [ ] | 270123210145 | Meera Patel   | S2-Oct | 4/5   | 91.0%    |
+|             |----------------------------------------------------------------|
+|             |    +------------------------------------------------------+    |
+| [Theme:     |    | [2 Selected]  [Send TMA Alert] [Change Batch] [Del]  |    |
+|  Slate Dark]|    +------------------------------------------------------+    |
++------------------------------------------------------------------------------+
+* UX Note: The Floating Bulk-Action Bar (`[F-UI-006]`) docks $16\text{px}$ above 
+  the bottom edge using inverted surface tokens so it never blends into the 
+  underlying data rows.
+
+
+================================================================================
+3. UI DESIGN 2: "NIOS ACADEMIC EDITORIAL (NEO-PAPER & INK)"
+================================================================================
+* Best Suited For : NIOS Study Centres, Student Syllabus Checklists (`[F-MAT-705]`), 
+                    Offline Textbook Vault (`[F-MAT-704]`), and Teacher TMA/PCP 
+                    Evaluation Workflows (`[F-MAT-703]`, `[F-ATT-605]`).
+* Design Language : Modelled after physical academic journals and high-legibility 
+                    textbooks. Eliminates harsh blue light in favor of warm paper 
+                    tones, soft $12\text{px}$ rounded cards, tactile checkbox 
+                    animations, and distinct visual tags for NIOS `40% TMA` vs. 
+                    `60% Public Exam` syllabus bifurcation.
+* Typography      :
+  - Headings      : `Newsreader` or `Merriweather` (Serif Bold 700 — Academic feel)
+  - Body & UI     : `DM Sans` or `Public Sans` (Regular 400 / Medium 500)
+  - Subject Codes : `IBM Plex Mono` (e.g., `[312-PHYSICS]`, `[302-ENGLISH]`)
+
+--------------------------------------------------------------------------------
+3.1 DESIGN 2 — LIGHT THEME: "WARM PARCHMENT & TERRACOTTA INK"
+--------------------------------------------------------------------------------
+Reduces visual fatigue during multi-hour study note reading (`[F-MAT-704]`) and 
+supports high legibility for Divyangjan/PwD learners (`[F-DAT-105]`).
+
+* Surface & Background Tokens:
+  - `--bg-canvas`          : `#FBF9F5` (Warm Cream Parchment)
+  - `--bg-surface-primary` : `#FFFFFF` (Crisp Notebook Page Card)
+  - `--bg-surface-muted`   : `#F3EFE6` (Sandstone Secondary Container)
+  - `--bg-surface-hover`   : `#EDE6D8` (Warm Pressed Paper State)
+  - `--bg-floating-bar`    : `#292524` (Warm Espresso Floating Bar)
+
+* Typography & Icon Tokens:
+  - `--text-primary`       : `#1C1917` (Deep Charcoal Ink — Contrast $15.4:1$)
+  - `--text-secondary`     : `#57534E` (Warm Umber Grey — Contrast $6.9:1$)
+  - `--text-muted`         : `#A8A29E` (Faded Pencil)
+
+* Accent & Semantic Status Tokens:
+  - `--accent-primary`     : `#C2410C` (Academic Terracotta / Rust)
+  - `--accent-subtle`      : `#FFEDD5` (Warm Peach Highlight)
+  - `--tag-public-exam`    : `#1E40AF` (Text) on `#DBEAFE` (`#Public-Exam-60%`)
+  - `--tag-tma-only`       : `#6B21A8` (Text) on `#F3E8FF` (`#TMA-40%`)
+  - `--status-present`     : `#15803D` (Forest Sage) on `#DCFCE7`
+  - `--status-absent`      : `#B91C1C` (Crimson Ink) on `#FEE2E2`
+  - `--status-late`        : `#B45309` (Ochre Amber) on `#FEF3C7`
+  - `--border-hairline`    : `#E7E0D3` (Warm Paper Edge Border)
+
+--------------------------------------------------------------------------------
+3.2 DESIGN 2 — DARK THEME: "MIDNIGHT LIBRARY & WARM AMBER"
+--------------------------------------------------------------------------------
+Inspired by an evening study lamp in a quiet library. Uses warm espresso-charcoal 
+surfaces instead of cold blue-blacks to preserve melatonin during night study.
+
+* Surface & Background Tokens:
+  - `--bg-canvas`          : `#141210` (Deep Espresso Bark)
+  - `--bg-surface-primary` : `#1F1C18` (Warm Walnut Card Surface)
+  - `--bg-surface-muted`   : `#292520` (Muted Leather Secondary Fill)
+  - `--bg-surface-hover`   : `#36302A` (Elevated Warm Hover)
+  - `--bg-floating-bar`    : `#F59E0B` (Amber Lamp Floating Action Bar)
+
+* Typography & Icon Tokens:
+  - `--text-primary`       : `#F5F5F4` (Warm Ivory Text — Contrast $14.9:1$)
+  - `--text-secondary`     : `#A8A29E` (Warm Stone Grey — Contrast $6.4:1$)
+  - `--text-muted`         : `#78716C` (Muted Bronze)
+
+* Accent & Semantic Status Tokens:
+  - `--accent-primary`     : `#F59E0B` (Warm Study-Lamp Amber)
+  - `--accent-subtle`      : `#451A03` (Deep Amber Glow Fill)
+  - `--tag-public-exam`    : `#93C5FD` (Text) on `#1E3A8A` (`#Public-Exam-60%`)
+  - `--tag-tma-only`       : `#D8B4FE` (Text) on `#581C87` (`#TMA-40%`)
+  - `--status-present`     : `#4ADE80` (Soft Mint) on `#064E3B`
+  - `--status-absent`      : `#FCA5A5` (Soft Coral) on `#7F1D1D`
+  - `--status-late`        : `#FCD34D` (Warm Gold) on `#78350F`
+  - `--border-hairline`    : `#2E2923` (Subtle Warm Divider)
+
+--------------------------------------------------------------------------------
+3.3 DESIGN 2 — SCREEN BLUEPRINT (STUDENT MOBILE SYLLABUS CHECKLIST & NIOS HUB)
+--------------------------------------------------------------------------------
+Mounts: `[F-UI-001]`, `[F-UI-004]`, `[F-MAT-704]`, `[F-MAT-705]`, `[F-MAT-706]`
+
++-----------------------------------------------+
+| [Gravel]  ENROL: 270123210014   [Offline OK]  | <-- [F-UI-004] PWA Vault Ready
+|-----------------------------------------------|
+| SYLLABUS CHECKLIST & TMA TRACKER  [F-MAT-705] |
+| Progress: [||||||||||||......] 68% Mastered   |
+|-----------------------------------------------|
+| FILTER TAGS [F-MAT-706]:                      |
+| (o) All  ( ) #Public-Exam-60%  ( ) #TMA-40%   |
+| Sort: [Scheduled Date: This Week v] [312-PHY] |
+|-----------------------------------------------|
+| +-------------------------------------------+ |
+| | [x] Ch 4: Laws of Motion & Friction       | |
+| |     [#TMA-40%] [Uploaded: 12 Oct]         | |
+| |     Status: Mastered   [Offline PDF v]    | |
+| +-------------------------------------------+ |
+| +-------------------------------------------+ |
+| | [~] Ch 9: Work, Energy & Power            | |
+| |     [#Public-Exam-60%] [#High-Weightage]  | |
+| |     Status: Needs Revision  [Open Notes]  | |
+| +-------------------------------------------+ |
+| +-------------------------------------------+ |
+| | [ ] Practical PCP Session 3: Pendulum Lab | |
+| |     [#Practical-PCP] [Scheduled: Friday]  | |
+| |     Status: To Study        [Lab Manual]  | |
+| +-------------------------------------------+ |
+|-----------------------------------------------|
+|  [Home]  [Schedule]  [*Check*]  [Lib]  [Me]   | <-- 5-Slot Thumb Bar [F-UI-001]
++-----------------------------------------------+
+
+
+================================================================================
+4. UI DESIGN 3: "KINETIC PULSE (FLOATING DOCK & HIGH-CONTRAST OLED)"
+================================================================================
+* Best Suited For : Fast-Paced Coaching/Tuition Institutes (`[F-DAT-107]`), 
+                    Degree Colleges (`[F-DAT-106]`), Teacher 15-Second Roll-Call 
+                    (`[F-ATT-601..604]`), and Live Schedule Diffs (`[F-SCH-505]`).
+* Design Language : Edge-to-edge canvas with a floating translucent bottom/side 
+                    dock (`backdrop-filter: blur(16px)`), pill-shaped segmented 
+                    controls, bold $2\text{px}$ active focus rings, and instant 
+                    visual-diff strikethrough cards for rescheduled classes.
+* Typography      :
+  - Headings      : `Space Grotesk` or `Outfit` (Bold 700, modern geometric)
+  - UI & Body     : `Inter` (Regular 400 / SemiBold 600)
+  - Timestamps    : `Space Mono` (Bold 700 for class countdowns & late chips)
+
+--------------------------------------------------------------------------------
+4.1 DESIGN 3 — LIGHT THEME: "DAYLIGHT FROST & INDIGO PULSE"
+--------------------------------------------------------------------------------
+High-energy, ultra-clear visual hierarchy with frosted floating navigation bars 
+and vibrant semantic pills for instant classroom scanning.
+
+* Surface & Background Tokens:
+  - `--bg-canvas`          : `#F4F4F8` (Cool Studio Grey)
+  - `--bg-surface-primary` : `#FFFFFF` (Pure White Card with $16\text{px}$ Radius)
+  - `--bg-surface-glass`   : `rgba(255, 255, 255, 0.85)` (Floating Dock / Header)
+  - `--bg-surface-muted`   : `#E4E4E7` (Segmented Radio Track Fill)
+  - `--bg-floating-bar`    : `#4F46E5` (Electric Indigo Floating Bar)
+
+* Typography & Icon Tokens:
+  - `--text-primary`       : `#09090B` (Jet Black — Contrast $18.2:1$)
+  - `--text-secondary`     : `#52525B` (Zinc Grey — Contrast $7.5:1$)
+  - `--text-muted`         : `#A1A1AA` (Muted Silver)
+
+* Accent & Semantic Status Tokens:
+  - `--accent-primary`     : `#4F46E5` (Electric Indigo)
+  - `--accent-secondary`   : `#EC4899` (Pulse Magenta — Rescheduled Diff Badge)
+  - `--status-present`     : `#059669` (Solid Emerald Button when active)
+  - `--status-absent`      : `#E11D48` (Solid Rose Button when active)
+  - `--status-late`        : `#D97706` (Solid Amber Button when active)
+  - `--border-hairline`    : `#D4D4D8` ($1.5\text{px}$ Crisp Card Outline)
+
+--------------------------------------------------------------------------------
+4.2 DESIGN 3 — DARK THEME: "OLED CYBER PITCH & NEON EMERALD"
+--------------------------------------------------------------------------------
+Engineered specifically for AMOLED/OLED mobile screens (`#000000` true black 
+pixels turn off completely, saving up to $40\%$ battery for teachers and 
+students using the PWA on mobile data all day).
+
+* Surface & Background Tokens:
+  - `--bg-canvas`          : `#000000` (True OLED Pitch Black)
+  - `--bg-surface-primary` : `#0C0C0E` (Carbon Elevated Card)
+  - `--bg-surface-glass`   : `rgba(18, 18, 22, 0.82)` (Frosted Obsidian Dock)
+  - `--bg-surface-muted`   : `#18181B` (Segmented Radio Track Fill)
+  - `--bg-floating-bar`    : `#10B981` (Neon Emerald Floating Bar)
+
+* Typography & Icon Tokens:
+  - `--text-primary`       : `#FAFAFA` (Pure Titanium White — Contrast $20.1:1$)
+  - `--text-secondary`     : `#A1A1AA` (Metallic Zinc — Contrast $8.1:1$)
+  - `--text-muted`         : `#52525B` (Dark Zinc)
+
+* Accent & Semantic Status Tokens:
+  - `--accent-primary`     : `#10B981` (Neon Emerald)
+  - `--accent-secondary`   : `#A855F7` (Ultraviolet — Rescheduled Diff Badge)
+  - `--status-present`     : `#10B981` (Neon Green Active Pill, Black Text)
+  - `--status-absent`      : `#F43F5E` (Neon Crimson Active Pill, White Text)
+  - `--status-late`        : `#F59E0B` (Neon Amber Active Pill, Black Text)
+  - `--border-hairline`    : `#27272A` ($1.5\text{px}$ High-Contrast Zinc Border)
+
+--------------------------------------------------------------------------------
+4.3 DESIGN 3 — SCREEN BLUEPRINT (TEACHER 15-SECOND ROLL CALL & SCHEDULE DIFF)
+--------------------------------------------------------------------------------
+Mounts: `[F-ATT-601..604]`, `[F-SCH-505]`, `[F-MATH-301]`
+
++-----------------------------------------------+
+| [LIVE CLASS] 311-MATH (PCP-04)   [10:00 AM]   |
+| Room 204 (Was Room 102 - RESCHEDULED)         | <-- [F-SCH-505] Visual Diff
+|-----------------------------------------------|
+| [✓ MARK ALL PRESENT (38) ]   [Reset]          | <-- [F-ATT-603] 1-Tap Roll Call
+| Summary: 36 Present | 1 Absent | 1 Late       |
+|-----------------------------------------------|
+| 01. Aarav Sharma (#210014)      AR: 64.2% [!] |
+| [ ( ) PRESENT ] [ (•) ABSENT  ] [ ( ) LATE  ] | <-- [F-ATT-602] 3-State Radio
+|-----------------------------------------------|
+| 02. Diya Nair (#210089)         AR: 82.0%     |
+| [ ( ) PRESENT ] [ ( ) ABSENT  ] [ (•) LATE  ] |
+|   +--> Late By: [(•) +5m] [+15m] [+30m] [Note]| <-- [F-ATT-604] Late Chips
+|-----------------------------------------------|
+| 03. Kabir Verma (#210102)       AR: 94.5%     |
+| [ (•) PRESENT ] [ ( ) ABSENT  ] [ ( ) LATE  ] |
+|-----------------------------------------------|
+|  +-----------------------------------------+  |
+|  | [SUBMIT ATTENDANCE (38/38)]  (Syncs)    |  | <-- Floating Glass Dock
+|  +-----------------------------------------+  |
++-----------------------------------------------+
+
+
+================================================================================
+5. SIDE-BY-SIDE THEME & DESIGN COMPARISON MATRIX (FOR DEV `[F-UI-002]`)
+================================================================================
+The `DEV` account can switch between these 6 theme states (`3 Designs x 2 Modes`) 
+instantly via the Theme Engine JSON Registry:
+
++----------------------+------------------------+------------------------+------------------------+
+| UI Token / Property  | DESIGN 1: GRAVEL SLATE | DESIGN 2: NIOS PAPER   | DESIGN 3: KINETIC OLED |
++----------------------+------------------------+------------------------+------------------------+
+| Target Archetype     | Data-Heavy Admin & Dev | NIOS Study & Reading   | Mobile Coaching & Fast |
+|                      | Tables / Analytics     | Checklists / TMAs      | Classroom Roll-Call    |
++----------------------+------------------------+------------------------+------------------------+
+| Light Canvas (`bg`)  | `#F8FAFC` (Alabaster)  | `#FBF9F5` (Parchment)  | `#F4F4F8` (Studio Frost|
+| Dark Canvas (`bg`)   | `#090D16` (Obsidian)   | `#141210` (Espresso)   | `#000000` (True OLED)  |
++----------------------+------------------------+------------------------+------------------------+
+| Light Primary Accent | `#2563EB` (Cobalt)     | `#C2410C` (Terracotta) | `#4F46E5` (Indigo)     |
+| Dark Primary Accent  | `#38BDF8` (Sky Cyan)   | `#F59E0B` (Warm Amber) | `#10B981` (Neon Green) |
++----------------------+------------------------+------------------------+------------------------+
+| Card Corner Radius   | `6px` (Crisp Technical)| `12px` (Soft Notebook) | `16px` (Modern Pill)   |
+| Border Treatment     | `1px` Exposed Grid     | `1px` Warm Paper Edge  | `1.5px` + Frosted Blur |
+| Navigation Style     | Fixed Left Rail + Top  | Top Header + 5-Tab Bar | Floating Glass Dock    |
++----------------------+------------------------+------------------------+------------------------+
+| Mathematical Graph   | High-Density Monospace | Editorial Tufte-Style  | Glowing Gradient Lines |
+| Rendering Style      | Axes (`[F-GRPH-401..]`) | Charts with Ink Labels | & High-Contrast Rings  |
++----------------------+------------------------+------------------------+------------------------+
+
+================================================================================
+END OF UI DESIGN & THEME SPECIFICATION
+================================================================================

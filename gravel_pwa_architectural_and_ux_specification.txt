@@ -1,0 +1,641 @@
+================================================================================
+GRAVEL — PROGRESSIVE WEB APPLICATION (PWA)
+MODULAR FEATURE-INDEXED ARCHITECTURE & NIOS / MULTI-INSTITUTION BLUEPRINT
+================================================================================
+
+1. CORE ARCHITECTURAL PHILOSOPHY: "EVERYTHING IS AN INDEXED FEATURE"
+--------------------------------------------------------------------------------
+* Application Name : Gravel
+* Platform Type    : Offline-First Progressive Web Application (PWA)
+* Core Paradigm    : Feature-Indexed Micro-Module Architecture
+* Primary Domain   : NIOS (National Institute of Open Schooling) Institutions, 
+                     with zero-code Dev reconfigurability for Colleges, 
+                     Coaching/Tuition Centres, and Standard K-12 Schools.
+
+1.1 How the Feature-Index Engine Works
+In Gravel, every mechanism—including UI shells, navigation bars, form field 
+schemas, table filters, mathematical formulas, charts, and role workflows—is 
+encapsulated as an independent module with a unique **Feature Index ID** 
+(e.g., `[F-UI-001]`, `[F-DAT-103]`, `[F-MATH-304]`).
+
+Instead of hardcoding pages for a single institution type, the application 
+reads a **Client Manifest Blueprint** controlled by the `DEV` account. The 
+application structure acts as a skeletal layout tree where **Feature Indices** 
+are mounted into specific slots.
+
+  [Tenant Manifest (JSON)] ---> [Feature Registry Lookup] ---> [Rendered UI & DB Schema]
+
+1.2 Multi-Institution Adaptability (Dev-Controlled)
+By toggling or swapping Feature Indices in the Dev Console, a Developer can 
+instantly morph Gravel across different educational models:
+* Mode A: NIOS Accredited Institution (AI) / Study Centre (Default Focus)
+  Mounts NIOS Stream/Block schemas, TMA (Tutor Marked Assignments), PCP 
+  (Personal Contact Programmes), TOC (Transfer of Credit), and On-Demand Exam 
+  (ODE) vs. Public Exam trackers.
+* Mode B: Coaching / Tuition Institute
+  Swaps NIOS schemas for Competitive Target Exams, Batch Mock-Test Ranks, 
+  Fee Installment Trackers, and Doubt-Session Booking modules.
+* Mode C: Degree College / University Department
+  Swaps in Semester/Trimester Credit Systems, SGPA/CGPA Calculators, Lab 
+  Internal Assessments, and Elective Course Registration modules.
+
+
+================================================================================
+2. MASTER CLASSIFIED FEATURE REGISTRY (THE FEATURE LIST)
+================================================================================
+Every capability in Gravel is cataloged below by category and assigned a 
+permanent Feature Index. Section 3 uses these exact indices to assemble the 
+application structure and UX placement.
+
+--------------------------------------------------------------------------------
+CATEGORY 00: UI SHELL, NAVIGATION & THEME FEATURES [F-UI-xxx]
+--------------------------------------------------------------------------------
+* [F-UI-001] Responsive App Shell Controller
+  Automatically switches between Desktop 3-Zone Layout (Left Sidebar + Top 
+  Contextual Bar + Main Canvas) at >=1024px and Mobile Thumb-Zone Layout (Top 
+  App Bar + Card Viewport + 5-Slot Bottom Navigation Bar + Slide-Up Sheets) at 
+  <768px.
+
+* [F-UI-002] Modular Theme Engine ("Swappable by Dev")
+  Decouples styling via CSS Custom Property Design Tokens (Surface, Text, 
+  Primary, Semantic Status, Border Radius, Density). Supports instant runtime 
+  switching between presets: `Gravel Slate`, `NIOS Academic High-Contrast`, 
+  `Solarized Light`, `OLED Dark`, and `Custom Client Brand JSON`.
+
+* [F-UI-003] Global Command & Quick-Search Bar (Cmd/Ctrl + K)
+  Universal search header allowing instant lookup of users (by Name, NIOS 
+  Enrolment No, Roll No), classes, study materials, or feature shortcuts.
+
+* [F-UI-004] PWA Offline Sync & Connectivity Banner
+  Monitors network status, caches read views and attendance/checklist mutations 
+  in IndexedDB, and triggers Background Sync when connectivity returns.
+
+* [F-UI-005] Interactive Data Table Engine
+  Virtualized, high-density table component supporting sticky headers, inline 
+  row actions, multi-row selection checkboxes, and slide-over detail drawers.
+
+* [F-UI-006] Floating Bulk-Action Bar
+  Contextual bottom action bar that smoothly animates into view whenever >=1 
+  items (students, teachers, files, or notifications) are selected.
+
+* [F-UI-007] Slide-Over Inspector Drawer
+  Right-hand overlay panel (Desktop) or Bottom Sheet (Mobile) for editing user 
+  profiles, viewing audit history, or inspecting class details without losing 
+  scroll context.
+
+* [F-UI-008] Dynamic Delegated-Permission SidebarInjector
+  Detects if a logged-in User (e.g., Teacher) has been granted elevated 
+  permissions by an Admin and dynamically injects an "Admin Tools" drawer into 
+  their navigation bar.
+
+--------------------------------------------------------------------------------
+CATEGORY 01: DEVELOPER (DEV) PLATFORM CONTROL FEATURES [F-DEV-xxx]
+--------------------------------------------------------------------------------
+* [F-DEV-001] Institution Profile & Feature-Index Configurator
+  Allows Dev to select an Institution Preset (`NIOS Centre`, `College`, 
+  `Tuition/Coaching`, `Custom`) and toggle individual Feature Indices (`F-xxx`) 
+  ON/OFF per role without redeploying code.
+
+* [F-DEV-002] Admin Account Provisioning Console (CRUD)
+  Create, suspend, reset credentials, assign rate/tenant limits, or hard-delete 
+  Admin accounts.
+
+* [F-DEV-003] Global Audit Log & Mutation Stream
+  Real-time searchable log of every action across all users (`CREATE`, `UPDATE`, 
+  `DELETE`, `LOGIN`, `PERMISSION_GRANT`, `DB_OVERRIDE`) with IP, Role, and 
+  Timestamp filters.
+
+* [F-DEV-004] Raw Database Inspector & Query Console
+  Direct tabular and JSON read/write access to all collections (Users, 
+  NIOS_Records, Schedules, Attendance, Scores, Materials) for debugging.
+
+* [F-DEV-005] Snapshot Backup, Restore & Cache Purge Utility
+  One-click manual database snapshot creation, point-in-time restore, and PWA 
+  Service Worker cache invalidation bump.
+
+* [F-DEV-006] Shadow Login ("Impersonate User" Sandbox)
+  Allows Dev to view and test the live interface as any specific Admin, Teacher, 
+  or Student in Read-Only or Live mode.
+
+--------------------------------------------------------------------------------
+CATEGORY 02: MODULAR DATA SCHEMAS & FIELD PACKS [F-DAT-xxx]
+--------------------------------------------------------------------------------
+Data schemas are modular field groups injected into Account Creation, Edit 
+Drawers, and Profile Views based on the active Institution Profile.
+
+* [F-DAT-101] Base User Identity Schema (Universal)
+  Full Legal Name, Date of Birth, Gender, Blood Group, Profile Photo, Signature 
+  Scan, Email Address, Primary Phone Number, Current & Permanent Residential 
+  Address, Account Status (`Active`, `Onboarding`, `Suspended`, `Archived`).
+
+* [F-DAT-102] Guardian & Emergency Contact Schema (Student Universal)
+  Father's Name, Mother's Name, Legal Guardian Name, Relationship, Primary & 
+  Secondary WhatsApp/SMS Alert Numbers, Guardian Email, Occupation, Annual 
+  Family Income Bracket (optional for scholarships).
+
+* [F-DAT-103] NIOS Core Enrolment & Stream Schema (NIOS Student Specific)
+  - 12-Digit NIOS Enrolment Number (e.g., `270123210001`) & Reference Number.
+  - Accredited Institution (AI) Code / Study Centre Code & Regional Centre Name.
+  - Course Level: `OBE (A/B/C)`, `Secondary (Class X)`, `Senior Secondary (Class XII)`, 
+    or `Vocational`.
+  - Admission Stream & Block:
+    * `Stream 1, Block 1` (April-May Public Exam)
+    * `Stream 1, Block 2` (Oct-Nov Public Exam)
+    * `Stream 2` (Oct-Nov Exam for unsuccessful regular board candidates)
+    * `Stream 3` (Secondary On-Demand Examination - ODE)
+    * `Stream 4` (Senior Secondary On-Demand Examination - ODE)
+  - Medium of Instruction (`English`, `Hindi`, `Urdu`, `Regional Languages`).
+  - Academic Session Year & Admission Confirmation Status (`Provisional`, 
+    `Verified`, `ID Card Issued`).
+
+* [F-DAT-104] NIOS Subject, TOC, TMA & PCP Schema (NIOS Student Specific)
+  - Enrolled Subjects (5 to 7 subjects) with NIOS 3-Digit Subject Codes 
+    (e.g., `201-Hindi`, `302-English`, `311-Mathematics`, `312-Physics`) and 
+    Category (`Group A/B/C/D/E/F`, `Theory Only` vs. `Theory + Practical`).
+  - Transfer of Credit (TOC) Record:
+    * Eligibility Toggle (`Yes/No`), Previous Board Name & Roll No, Year of 
+      Passing/Failing, TOC Subjects Availed (up to 2 or 4 subjects with past 
+      Theory/Practical marks carried forward).
+  - TMA (Tutor Marked Assignment) Tracker per Subject:
+    * Submission Status (`Pending`, `Submitted to AI`, `Uploaded on Portal`, 
+      `Evaluated`), Submission Date, Late Fee Flag, Marks Awarded (out of 20, 
+      scaled to 20% of theory).
+  - PCP (Personal Contact Programme) & Practical Record:
+    * General PCP Sessions Attended (out of 30 theory/counselling sessions).
+    * Mandatory 5 Formative Assessment Practical PCP Sessions (`Session 1-5` 
+      marks & attendance).
+    * Practical Record Book / Lab Manual Submission Status.
+  - Examination & Hall Ticket Status:
+    * Exam Type (`Public Exam` vs. `ODE Slot`), Exam Fee Paid Status (`Yes/No`), 
+      Booked ODE Date & Exam Centre Code, Theory & Practical Hall Ticket Status.
+
+* [F-DAT-105] NIOS KYC, Social Category & PwD Compliance Schema (NIOS Specific)
+  - Identity Proof Type & Number (Aadhaar / Passport / Ration Card).
+  - Social Category (`General`, `SC`, `ST`, `OBC`, `Ex-Serviceman`).
+  - Disadvantaged Group / Special Concessions.
+  - Divyangjan / PwD Status: Disability Type (`LD`, `VI`, `HI`, `ID`, `Multiple`), 
+    UDID Card No., Exam Concessions Required (`Scribe/Writer Needed`, 
+    `20 Mins/Hour Extra Time`, `Practical/Language Exemption`).
+  - Document Verification Checklist (`Birth Proof`, `Address Proof`, `Previous 
+    Marksheet/Fail Certificate`, `Cast/PwD Certificate`).
+
+* [F-DAT-106] College / Higher-Ed Extension Schema (Multi-Institution Option)
+  University Registration No., Degree Program (B.Sc/B.Tech/B.Com), Current 
+  Semester/Trimester, Enrolled Credit Hours, Mentor/Advisor Assigned, Lab Batch, 
+  Internal Assessment (IA) Marks, SGPA/CGPA History, Backlogs/Arrears Count.
+
+* [F-DAT-107] Tuition / Coaching Extension Schema (Multi-Institution Option)
+  School/College Attended, Target Exam (`NIOS Crash Course`, `CBSE/State Board`, 
+  `JEE`, `NEET`, `CUET`), Batch Timing Slot (`Morning`, `Evening`, `Weekend`), 
+  Fee Package & Installment Status (`Paid`, `Due`, `Overdue`), Doubt-Counter ID.
+
+* [F-DAT-108] Teacher / Academic Facilitator Schema (Universal + NIOS)
+  Employee/Facilitator ID, Designation (`PCP Counsellor`, `Subject Teacher`, 
+  `TMA Evaluator`, `Practical Examiner`, `Batch Coordinator`), Department, 
+  Subject Specializations (with NIOS Subject Codes), Assigned Batches/Streams, 
+  Max Weekly Hours, Employment Type (`Full-Time`, `Visiting PCP Faculty`), 
+  TMA Evaluation Load Quota.
+
+--------------------------------------------------------------------------------
+CATEGORY 03: ACCOUNT, DIRECTORY & PERMISSION FEATURES [F-ACC-xxx]
+--------------------------------------------------------------------------------
+* [F-ACC-201] Single Account Creator Wizard
+  Role-aware stepped form that dynamically renders field packs (`[F-DAT-101]` 
+  to `[F-DAT-108]`) to create a Student or Teacher account with validation.
+
+* [F-ACC-202] Bulk CSV/Excel Account Importer
+  Mass-onboarding utility with column-mapping preview (supports direct import 
+  of NIOS AI Study Centre student rosters or tuition admission spreadsheets).
+
+* [F-ACC-203] Multi-Facet Account Filter Engine
+  Filters user directory by:
+  - Role (`Student`, `Teacher`, `Delegated Teacher`)
+  - NIOS Criteria (`Course: X/XII/OBE`, `Stream 1-4`, `Block 1/2`, `Medium`, 
+    `Subject Code`, `TMA Pending`, `Exam Fee Unpaid`, `TOC Applied`, `PwD/Scribe`)
+  - Universal Criteria (`Batch/Section`, `Status: Active/Suspended`, `Attendance < 75%`, 
+    `Score < Passing Threshold`, `Fee Overdue`).
+
+* [F-ACC-204] Multi-Criteria Account Sorting Engine
+  Sorts directory by:
+  - `Name (A-Z / Z-A)`
+  - `NIOS Enrolment No. / Roll No. / Employee ID (Asc / Desc)`
+  - `Admission / Creation Date (Newest / Oldest)`
+  - `Attendance Rate (High-to-Low / Low-to-High)`
+  - `TMA Submission Progress (%)`
+  - `Average Academic Score (High-to-Low / Low-to-High)`
+
+* [F-ACC-205] Bulk Account Action Processor
+  Executes mass operations on checkbox-selected accounts:
+  - `Bulk Delete / Soft-Archive`
+  - `Bulk Status Change (Activate / Suspend / Lock)`
+  - `Bulk Stream/Block or Batch Reassignment`
+  - `Bulk TMA/Exam-Fee Reminder Dispatch`
+  - `Bulk Password Reset Link Dispatch`
+  - `Bulk Export Selected Profiles (CSV / PDF / NIOS Nominal Roll Format)`
+
+* [F-ACC-206] Inline Row Actions & Full-Override Account Editor
+  Provides per-row quick buttons (`[Edit]`, `[Delete]`, `[More]`) opening 
+  `[F-UI-007]` so Admins can alter any user field at will, force-reset PINs/
+  passwords, terminate active sessions, or archive accounts.
+
+* [F-ACC-207] Granular Permission Delegation Matrix
+  Allows Admins to select specific Teachers and grant/revoke sub-admin 
+  capabilities (`Create/Edit Students`, `Approve Schedules`, `Unlock Attendance`, 
+  `Verify TMA Marks`, `View Global Analytics`) with **Scope Constraints** 
+  (`Assigned Batches Only` vs. `Institution-Wide`) and **Time-Bound Expiry** 
+  (e.g., active only until TMA submission deadline).
+
+--------------------------------------------------------------------------------
+CATEGORY 04: MATHEMATICAL & STATISTICAL ANALYTICS ENGINE [F-MATH-xxx]
+--------------------------------------------------------------------------------
+All calculations execute automatically based on active observation filters.
+
+* [F-MATH-301] Weighted Attendance Rate ($AR$) Calculator
+  Computes overall, subject-wise, or PCP attendance percentage:
+  $$AR = \left( \frac{N_{\text{present}} + w \cdot N_{\text{late}}}{N_{\text{total}}} \right) \times 100\%$$
+  Where $w \in [0, 1]$ is the configurable weight for late arrivals (default $w = 0.5$).
+
+* [F-MATH-302] Attendance Safe-Margin & Recovery Calculator
+  Calculates how many classes a student can safely miss ($M_{\text{safe}}$) or 
+  must consecutively attend ($C_{\text{req}}$) to maintain target threshold $T$ 
+  (e.g., $T = 0.75$ for general or mandatory PCP completion):
+  $$M_{\text{safe}} = \left\lfloor \frac{N_{\text{present}} - T \cdot N_{\text{total}}}{T} \right\rfloor, \quad C_{\text{req}} = \left\lceil \frac{T \cdot N_{\text{total}} - N_{\text{present}}}{1 - T} \right\rceil$$
+
+* [F-MATH-303] NIOS Composite Subject Score & TMA Weightage Engine
+  Computes the projected or final NIOS subject score ($S_{\text{final}}$) 
+  combining Theory Exam marks, Practical marks, and TMA (20% of Theory max):
+  - For Non-Practical Subjects (Max Theory $T_{\max} = 100$, scaled to $80$ + TMA $20$):
+    $$S_{\text{final}} = \left( \frac{M_{\text{theory}}}{100} \times 80 \right) + M_{\text{TMA}}$$
+  - For Practical Subjects (e.g., Max Theory $80$ scaled to $64$, Practical $20$, TMA $16$):
+    $$S_{\text{final}} = \left( \frac{M_{\text{theory}}}{80} \times 64 \right) + M_{\text{TMA (scaled to 16)}} + M_{\text{practical}}$$
+  - Enforces NIOS Passing Criteria: $\ge 33\%$ in aggregate AND $\ge 33\%$ 
+    separately in Theory and Practical components.
+
+* [F-MATH-304] NIOS 5-Session Formative PCP Score Aggregator
+  Calculates Practical PCP formative assessment marks across the 5 mandatory 
+  practical contact sessions:
+  $$M_{\text{PCP-Prac}} = \sum_{k=1}^{5} p_k$$
+
+* [F-MATH-305] Cohort Mean ($\mu$) & Standard Deviation ($\sigma$) Engine
+  Measures central tendency and score dispersion per subject, batch, or exam:
+  $$\mu = \frac{1}{n} \sum_{i=1}^{n} x_i, \quad \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2}$$
+
+* [F-MATH-306] Student Percentile Rank ($PR$) Calculator
+  Determines relative standing within a batch, stream, or mock test series:
+  $$PR = \left( \frac{L + 0.5 \cdot S}{N} \right) \times 100$$
+  Where $L$ is count of scores below $x$, $S$ is count equal to $x$, and $N$ is 
+  cohort size.
+
+* [F-MATH-307] Attendance-to-Performance Pearson Correlation ($r$)
+  Quantifies how strongly class/PCP attendance correlates with test scores:
+  $$r = \frac{\sum (AR_i - \overline{AR})(x_i - \mu)}{\sqrt{\sum (AR_i - \overline{AR})^2 \sum (x_i - \mu)^2}}$$
+
+* [F-MATH-308] College Credit & SGPA/CGPA Engine (Multi-Institution Option)
+  Computes Semester Grade Point Average for college deployments:
+  $$\text{SGPA} = \frac{\sum_{j=1}^{m} (C_j \cdot G_j)}{\sum_{j=1}^{m} C_j}$$
+  Where $C_j$ is course credit and $G_j$ is grade point earned.
+
+--------------------------------------------------------------------------------
+CATEGORY 05: GRAPHICAL & VISUALIZATION WIDGETS [F-GRPH-xxx]
+--------------------------------------------------------------------------------
+Interactive, exportable (PNG/SVG/CSV) chart components mounted in Observation 
+and Dashboard views.
+
+* [F-GRPH-401] Calendar Attendance Heatmap
+  GitHub-style daily grid showing attendance density and PCP session attendance 
+  across weeks and months.
+
+* [F-GRPH-402] Multi-Axis Score & Attendance Trend Line Chart
+  Plots longitudinal student or class score progression ($\mu$) overlaid against 
+  weekly attendance percentage ($AR$).
+
+* [F-GRPH-403] Subject-Wise Stacked Attendance Bar Chart
+  Compares `Present`, `Late`, and `Absent` proportions across all enrolled 
+  subjects or batches.
+
+* [F-GRPH-404] Student vs. Cohort Radar (Spider) Chart
+  Overlays an individual student's scores across 5–7 subjects against the batch 
+  mean ($\mu$) and passing threshold ($33\%$).
+
+* [F-GRPH-405] Score Distribution Histogram & Box-Plot
+  Displays subject exam score spread, median, quartiles, and at-risk outliers.
+
+* [F-GRPH-406] NIOS TMA & PCP Compliance Funnel Chart
+  Visualizes student progression through mandatory NIOS milestones:
+  `Enrolled` $\rightarrow$ `PCP >= 50%` $\rightarrow$ `TMA Submitted` $\rightarrow$ 
+  `TMA Evaluated` $\rightarrow$ `Exam Fee Paid` $\rightarrow$ `Hall Ticket Ready`.
+
+* [F-GRPH-407] Stream, Block & ODE Distribution Donut Chart
+  Breaks down institutional headcount across `Stream 1 Block 1`, `Stream 1 Block 2`, 
+  `Stream 2`, `Stream 3/4 (ODE)`, and `Secondary vs. Sr. Secondary`.
+
+* [F-GRPH-408] Component Breakdown Stacked Bar (Theory + TMA + Practical)
+  Visualizes each student's subject total broken into Theory contribution, TMA 
+  boost, Practical marks, and TOC carried-forward credits.
+
+--------------------------------------------------------------------------------
+CATEGORY 06: SCHEDULE & TIMETABLE ENGINE FEATURES [F-SCH-xxx]
+--------------------------------------------------------------------------------
+* [F-SCH-501] Master & Batch Timetable Viewer
+  Interactive calendar supporting `Agenda`, `Day`, `Weekly`, and `Monthly` views 
+  with filters for Batch, Stream/Block, Subject Code, Teacher, and Room/Link.
+
+* [F-SCH-502] Class & PCP Session Scheduler
+  Creates single or recurring classes with tags for Session Type (`Regular Lecture`, 
+  `NIOS Theory PCP`, `NIOS Mandatory Practical PCP [1-5]`, `Doubt Clearing`, 
+  `Mock/Internal Exam`), linked Syllabus Topic, Room, and Teacher.
+
+* [F-SCH-503] Drag-and-Drop Rescheduler with Conflict Detection Engine
+  Moves scheduled sessions to new slots while automatically checking for Teacher, 
+  Batch, or Room double-booking conflicts.
+
+* [F-SCH-504] Class Unscheduler (Cancellation & Alert Trigger)
+  Cancels a single session or recurring series, requires a mandatory reason, and 
+  auto-dispatches push notifications to affected teachers and students.
+
+* [F-SCH-505] Visual Diff "Updated Schedule" Highlight System
+  Dedicated student/teacher toggle and badge system showing `RESCHEDULED` classes 
+  with previous time crossed out and new time/room highlighted, plus `CANCELLED` 
+  strikethrough cards.
+
+* [F-SCH-506] Substitute Teacher & Exam Slot Booker
+  Assigns replacement faculty for classes where the primary teacher is on leave, 
+  and tracks student On-Demand Exam (ODE) date slots.
+
+--------------------------------------------------------------------------------
+CATEGORY 07: ATTENDANCE & ROLL-CALL FEATURES [F-ATT-xxx]
+--------------------------------------------------------------------------------
+* [F-ATT-601] Class-Specific Attendance Roster Loader
+  Auto-loads the student roster for the teacher's active class, PCP group, or 
+  selected date/subject, showing Student Photo, Roll/Enrolment No, and current $AR$.
+
+* [F-ATT-602] 3-State Segmented Radio Control
+  Touch-optimized per-student control: `[ (o) Present ]  [ ( ) Absent ]  [ ( ) Late ]`.
+
+* [F-ATT-603] "Mark All Present" 15-Second Roll-Call Accelerator
+  One-tap button to mark the entire roster `Present` by default so the teacher 
+  only taps exceptions (`Absent` or `Late`).
+
+* [F-ATT-604] Late-Arrival Time Chips & Excused Reason Popover
+  Reveals `+5m`, `+15m`, `+30m` quick-chips when `Late` is selected, plus an 
+  optional `Medical/Excused Note` field.
+
+* [F-ATT-605] NIOS 5-Session Formative Practical PCP Attendance Tracker
+  Specialized attendance mode that logs completion and awards session marks for 
+  the 5 mandatory NIOS Practical PCP sessions per subject.
+
+* [F-ATT-606] Admin Attendance Override, Lock & Holiday Manager
+  Allows Admins (or delegated Teachers) to unlock past attendance sheets, 
+  override erroneous entries with audit logging, or bulk-mark institutional 
+  holidays.
+
+--------------------------------------------------------------------------------
+CATEGORY 08: STUDY MATERIAL, TMA & TOPIC CHECKLIST FEATURES [F-MAT-xxx]
+--------------------------------------------------------------------------------
+* [F-MAT-701] Multi-Select Student & Cohort Target Picker
+  Allows teachers to select individual students, whole batches, specific NIOS 
+  Stream/Block groups, or performance-filtered cohorts (e.g., `Score < 40%` or 
+  `TOC Students`) for targeted material distribution.
+
+* [F-MAT-702] Mass Study Material Uploader with Tagging & Message
+  Multi-file uploader (PDF, DOCX, PPTX, Audio/Video links) with mandatory tags: 
+  Subject Code, Material Type (`NIOS Study Material`, `TMA Question Booklet`, 
+  `Solved Sample Paper`, `Lecture Notes`, `Practical Manual`, `Worksheet`), 
+  Target Exam Block, and custom Teacher Instructions.
+
+* [F-MAT-703] NIOS TMA Submission & Evaluation Workflow Module
+  Allows students to view TMA questions/deadlines and tracks physical/digital 
+  TMA submission receipts; allows teachers to enter TMA marks (out of 20) and 
+  evaluation feedback per subject.
+
+* [F-MAT-704] Student Textbook & Notes Library with PWA Offline Vault
+  Searchable, tag-filterable material repository for students with a `"Save for 
+  Offline"` toggle that stores PDFs/notes locally for internet-free study.
+
+* [F-MAT-705] Interactive Scheduled-Topic Syllabus Checklist
+  Auto-populates syllabus topics from scheduled classes and NIOS subject 
+  bifurcations ( distinguishing *TMA-only chapters [40%]* vs. *Public Exam 
+  chapters [60%]*). Features a 3-state student progress toggle (`[ ] To Study`, 
+  `[~] Needs Revision`, `[x] Mastered`) and direct `[View Linked Notes]` chips.
+
+* [F-MAT-706] Checklist Sorting & Multi-Tag Filtering Engine
+  Filters and sorts checklist topics by:
+  - Tags (`#Public-Exam-60%`, `#TMA-40%`, `#High-Weightage`, `#Practical`, 
+    Subject Codes)
+  - Upload / Scheduled Date (`Today`, `This Week`, `This Month`, `Newest/Oldest`)
+  - Completion Status (`Pending First`, `Needs Revision`, `Completed`).
+
+--------------------------------------------------------------------------------
+CATEGORY 09: NOTIFICATION & BROADCAST FEATURES [F-NOT-xxx]
+--------------------------------------------------------------------------------
+* [F-NOT-801] Targeted Group Notification Composer
+  Creates alerts for specific Batches, Streams/Blocks, Subjects, or custom 
+  student selections with severity levels (`Info`, `Academic`, `Urgent Alert`, 
+  `NIOS Deadline Warning`).
+
+* [F-NOT-802] Automated NIOS & Institutional Deadline Trigger
+  Pre-configured alert templates for `TMA Submission Deadline`, `Public Exam 
+  Fee Window`, `PCP Practical Schedule`, and `Hall Ticket Release`.
+
+* [F-NOT-803] Notification History, Read-Receipts & Revoke Manager
+  Allows teachers/admins to view delivery/seen counts (`Seen by 38/42`), edit 
+  active notices, pin important announcements, or delete/revoke sent alerts.
+
+
+================================================================================
+3. APPLICATION STRUCTURE & UX BLUEPRINT (INDEX-MAPPED)
+================================================================================
+Below is the complete role-based structural hierarchy of Gravel. Instead of 
+repeating feature descriptions, each node mounts the corresponding **Feature 
+Index** from Section 2.
+
+--------------------------------------------------------------------------------
+3.1 GLOBAL APPLICATION SHELL
+--------------------------------------------------------------------------------
+Root App Container
+├── Layout Engine ................................. Mounts [F-UI-001]
+├── Theme Provider ................................ Mounts [F-UI-002]
+├── Top Header Bar
+│   ├── Global Command Search ..................... Mounts [F-UI-003]
+│   ├── Offline / Sync Status Indicator ........... Mounts [F-UI-004]
+│   └── Notification Bell & User Profile Menu
+└── Role-Based Workspace Router (Routes to 3.2, 3.3, 3.4, or 3.5)
+
+--------------------------------------------------------------------------------
+3.2 LOGIN CLASS 1: DEVELOPER (DEV) STRUCTURE
+--------------------------------------------------------------------------------
+UX Layout: Utilitarian Top-Tab or Left-Sidebar Console with raw data density.
+
+DEV_WORKSPACE
+├── 1. Platform & Institution Configurator
+│   ├── Institution Mode & Feature-Index Matrix ... Mounts [F-DEV-001]
+│   └── Live Modular Theme Hot-Swapper ............ Mounts [F-UI-002]
+├── 2. Admin Account Management
+│   └── Admin CRUD & Tenant Scope Controller ...... Mounts [F-DEV-002]
+├── 3. System Observation & Audit Logs
+│   └── Real-Time Global Activity & Mutation Log .. Mounts [F-DEV-003]
+└── 4. Database & Debugging Tools
+    ├── Raw Database Inspector (Read/Write) ....... Mounts [F-DEV-004]
+    ├── Backup, Restore & Cache Purge ............. Mounts [F-DEV-005]
+    └── Shadow Login (Impersonate Any User) ....... Mounts [F-DEV-006]
+
+--------------------------------------------------------------------------------
+3.3 LOGIN CLASS 2: ADMINISTRATOR (ADMIN) STRUCTURE
+--------------------------------------------------------------------------------
+UX Layout: Desktop Left-Sidebar Command Suite + Mobile Responsive Drawer.
+
+ADMIN_WORKSPACE
+├── 1. Manage Accounts (Sidebar Slot 1: "Directory")
+│   ├── 1.1 Create Account Toolbar
+│   │   ├── Single Account Wizard ................. Mounts [F-ACC-201]
+│   │   │   ├── Student Account Creation:
+│   │   │   │   ├── Personal Details .............. Mounts [F-DAT-101]
+│   │   │   │   ├── Guardian Details .............. Mounts [F-DAT-102]
+│   │   │   │   ├── NIOS Enrolment/Stream/Block ... Mounts [F-DAT-103]
+│   │   │   │   ├── NIOS Subjects/TOC/TMA/PCP ..... Mounts [F-DAT-104]
+│   │   │   │   ├── NIOS KYC/Category/PwD ......... Mounts [F-DAT-105]
+│   │   │   │   └── Optional College/Tuition Packs. Mounts [F-DAT-106, F-DAT-107]
+│   │   │   └── Teacher Account Creation:
+│   │   │       ├── Personal Details .............. Mounts [F-DAT-101]
+│   │   │       └── Professional & NIOS Evaluator . Mounts [F-DAT-108]
+│   │   └── Bulk CSV/Nominal-Roll Importer ........ Mounts [F-ACC-202]
+│   │
+│   └── 1.2 Alter & Delete Accounts (Main Canvas Table)
+│       ├── Interactive Account Directory Table ... Mounts [F-UI-005]
+│       ├── Multi-Facet Filter Bar ................ Mounts [F-ACC-203]
+│       ├── Multi-Criteria Sort Header/Dropdown ... Mounts [F-ACC-204]
+│       ├── Multi-Select Floating Bulk-Action Bar . Mounts [F-UI-006, F-ACC-205]
+│       └── Per-Row Edit/Delete Actions & Drawer .. Mounts [F-UI-007, F-ACC-206]
+│
+├── 2. Observation & Analytics Studio (Sidebar Slot 2: "Analytics")
+│   ├── 2.1 Schedule & Attendance Observation
+│   │   ├── Master Timetable & PCP Viewer ......... Mounts [F-SCH-501]
+│   │   ├── Individual Student Attendance View .... Mounts [F-MATH-301, F-MATH-302, F-GRPH-401]
+│   │   └── Class/Schedule Attendance Breakdown ... Mounts [F-MATH-301, F-GRPH-403]
+│   ├── 2.2 Academic Score & NIOS Milestone Observation
+│   │   ├── Individual Student Score Profile ...... Mounts [F-MATH-303, F-MATH-306, F-GRPH-404, F-GRPH-408]
+│   │   ├── Subject-Wise Cohort Score Analysis .... Mounts [F-MATH-305, F-GRPH-402, F-GRPH-405]
+│   │   └── NIOS TMA/PCP/Exam Compliance Funnel ... Mounts [F-MATH-304, F-GRPH-406, F-GRPH-407]
+│   └── 2.3 Correlation & Custom Institutional Metrics
+│       ├── Attendance-to-Score Correlation ....... Mounts [F-MATH-307]
+│       └── Optional College SGPA/CGPA Analytics .. Mounts [F-MATH-308]
+│
+├── 3. Manage Permissions (Sidebar Slot 3: "Permissions")
+│   └── Teacher Delegation Matrix (Scope & Expiry)  Mounts [F-ACC-207]
+│
+└── 4. Core Operational Features (Sidebar Slots 4 & 5)
+    ├── 4.1 Attendance Administration
+    │   ├── Initialize Ad-Hoc/PCP Attendance ...... Mounts [F-ATT-601, F-ATT-605]
+    │   └── Override, Unlock & Holiday Manager .... Mounts [F-ATT-606]
+    ├── 4.2 Schedule Management
+    │   ├── Schedule Class / PCP Session .......... Mounts [F-SCH-502]
+    │   ├── Reschedule Class (Conflict Check) ..... Mounts [F-SCH-503]
+    │   ├── Unschedule / Cancel Class ............. Mounts [F-SCH-504]
+    │   └── Substitute & ODE Slot Manager ......... Mounts [F-SCH-506]
+    └── 4.3 Institutional Broadcasts
+        └── Global & Deadline Alert Dispatcher .... Mounts [F-NOT-801, F-NOT-802, F-NOT-803]
+
+--------------------------------------------------------------------------------
+3.4 LOGIN CLASS 3: TEACHER STRUCTURE
+--------------------------------------------------------------------------------
+UX Layout: Classroom-first workflow. Top action card on dashboard launches active 
+class attendance in one tap. Includes dynamic sidebar expansion for delegated 
+admin tools.
+
+TEACHER_WORKSPACE
+├── 1. Manage Attendance (Primary Tab / Dashboard Hero CTA)
+│   ├── Class & PCP Roster Loader ................. Mounts [F-ATT-601]
+│   ├── 3-State Radio (Present / Absent / Late) ... Mounts [F-ATT-602]
+│   ├── One-Tap "Mark All Present" Accelerator .... Mounts [F-ATT-603]
+│   ├── Late Time-Chips & Excused Notes ........... Mounts [F-ATT-604]
+│   └── NIOS 5-Session Practical PCP Grader ....... Mounts [F-ATT-605]
+│
+├── 2. View Student Details & Grades (Tab 2: "Students")
+│   ├── Filterable/Sortable Student Roster ........ Mounts [F-UI-005, F-ACC-203, F-ACC-204]
+│   └── Student 360 Inspector Drawer .............. Mounts [F-UI-007]
+│       ├── View Student Attendance & Safe Margin . Mounts [F-MATH-301, F-MATH-302, F-GRPH-401]
+│       ├── View Student NIOS Profile (TOC/PwD) ... Mounts [F-DAT-103, F-DAT-104, F-DAT-105]
+│       ├── TMA Marks & Theory/Prac Score Entry ... Mounts [F-MAT-703, F-MATH-303]
+│       └── Guardian Quick-Contact Action ......... Mounts [F-DAT-102]
+│
+├── 3. View & Manage Schedules (Tab 3: "Schedule")
+│   ├── Personal & Batch Timetable Viewer ......... Mounts [F-SCH-501, F-SCH-505]
+│   ├── Schedule Extra / Remedial / PCP Class ..... Mounts [F-SCH-502]
+│   ├── Reschedule Class .......................... Mounts [F-SCH-503]
+│   └── Unschedule / Cancel Class ................. Mounts [F-SCH-504]
+│
+├── 4. Manage Study Material & TMAs (Tab 4: "Materials")
+│   ├── Multi-Select Student / Stream Targeter .... Mounts [F-UI-006, F-MAT-701]
+│   ├── Mass Material Uploader with Tags & Note ... Mounts [F-MAT-702]
+│   └── TMA Evaluation & Booklet Manager .......... Mounts [F-MAT-703]
+│
+├── 5. Manage Notifications (Tab 5 / Header Action: "Alerts")
+│   ├── Group Alert & NIOS Deadline Composer ...... Mounts [F-NOT-801, F-NOT-802]
+│   └── Manage, Pin, or Delete Sent Notifications . Mounts [F-NOT-803]
+│
+└── 6. Delegated Admin Tools (Conditional Dynamic Drawer)
+    └── Injected only if Admin grants permissions . Mounts [F-UI-008, F-ACC-207]
+
+--------------------------------------------------------------------------------
+3.5 LOGIN CLASS 4: STUDENT STRUCTURE
+--------------------------------------------------------------------------------
+UX Layout: Mobile-first thumb-zone navigation (Bottom Bar with 5 tabs: Home, 
+Schedule, Checklist, Library, Profile/Attendance).
+
+STUDENT_WORKSPACE
+├── 1. View Attendance & NIOS Compliance (Home Hero + Attendance View)
+│   ├── Overall & Subject Attendance Rings ........ Mounts [F-MATH-301, F-GRPH-403]
+│   ├── Safe-Margin / Recovery Class Calculator ... Mounts [F-MATH-302]
+│   ├── Daily Attendance Calendar Heatmap ......... Mounts [F-GRPH-401]
+│   └── NIOS Milestone Tracker (PCP/TMA/Exam Fee) . Mounts [F-DAT-104, F-MAT-703]
+│
+├── 2. View Schedules & Reschedule Updates (Bottom Tab 2: "Schedule")
+│   ├── Daily, Weekly & Monthly Timetable ......... Mounts [F-SCH-501]
+│   └── "Updated / Rescheduled" Visual Diff Feed .. Mounts [F-SCH-505]
+│
+├── 3. Textbooks & Study Notes (Bottom Tab 3: "Library")
+│   └── Tag-Filterable Repository & Offline Vault . Mounts [F-UI-004, F-MAT-704]
+│
+├── 4. Scheduled Topic & Syllabus Checklist (Bottom Tab 4: "Checklist")
+│   ├── Interactive 3-State Topic Checklist ....... Mounts [F-MAT-705]
+│   │   (Distinguishes NIOS 40% TMA vs. 60% Public Exam Syllabus)
+│   └── Upload-Date & Tag Filter/Sort Bar ......... Mounts [F-MAT-706]
+│
+└── 5. Academic Profile & Score Card (Bottom Tab 5: "Profile")
+    ├── Personal, NIOS Enrolment, TOC & Subject ID  Mounts [F-DAT-101, F-DAT-103, F-DAT-104]
+    └── Composite Score Breakdown & Radar Chart ... Mounts [F-MATH-303, F-GRPH-404, F-GRPH-408]
+
+
+================================================================================
+4. MULTI-INSTITUTION CUSTOMIZATION PRESETS (DEV CONFIGURATION MATRIX)
+================================================================================
+To make Gravel usable across any educational institution, the `DEV` role uses 
+`[F-DEV-001]` to switch the active **Institution Manifest**. Below are the 
+three core presets showing how Feature Indices are swapped:
+
++------------------------+----------------------------+----------------------------+----------------------------+
+| Architectural Layer    | PRESET 1: NIOS INSTITUTION | PRESET 2: DEGREE COLLEGE   | PRESET 3: COACHING/TUITION |
++------------------------+----------------------------+----------------------------+----------------------------+
+| Active Data Schemas    | [F-DAT-101, 102, 103,      | [F-DAT-101, 102, 106,      | [F-DAT-101, 102, 107,      |
+|                        |  104, 105, 108]            |  108]                      |  108]                      |
++------------------------+----------------------------+----------------------------+----------------------------+
+| Primary Student ID     | 12-Digit NIOS Enrolment No | University Reg / Roll No   | Batch ID / Enrollment Code |
+|                        | + AI Code + Stream/Block   | + Semester + Department    | + Target Competitive Exam  |
++------------------------+----------------------------+----------------------------+----------------------------+
+| Active Math Engines    | [F-MATH-301, 302, 303,     | [F-MATH-301, 302, 305,     | [F-MATH-301, 305, 306,     |
+|                        |  304, 305, 306, 307]       |  306, 307, 308 (CGPA)]     |  307 (Rank & Percentile)]  |
++------------------------+----------------------------+----------------------------+----------------------------+
+| Active Graph Pack      | [F-GRPH-401 to 408]        | [F-GRPH-401 to 405]        | [F-GRPH-401, 402, 404,     |
+|                        | (Includes TMA/PCP Funnel)  | (Semester & Credit Charts) |  405 (Mock Test Trends)]   |
++------------------------+----------------------------+----------------------------+----------------------------+
+| Specialized Attendance | Regular + 5-Session        | Lecture + Lab Credit       | Batch + Doubt-Session      |
+| & Schedule Modes       | Mandatory Practical PCP    | Attendance [F-ATT-601]     | Attendance [F-ATT-601]     |
+|                        | [F-ATT-605, F-SCH-502]     |                            |                            |
++------------------------+----------------------------+----------------------------+----------------------------+
+| Checklist & Material   | 40% TMA vs. 60% Public     | Unit-wise Semester         | Chapter Weightage & DPP    |
+| Taxonomy Tags          | Exam Syllabus [F-MAT-705]  | Syllabus [F-MAT-705]       | (Daily Practice) [F-MAT-705]|
++------------------------+----------------------------+----------------------------+----------------------------+
+
+================================================================================
+END OF SPECIFICATION
+================================================================================
